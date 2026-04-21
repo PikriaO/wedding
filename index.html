@@ -14,10 +14,9 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #000;
-      overflow: hidden;
     }
 
-    /* SLIDER */
+    /* SCROLLER */
     .slider {
       display: flex;
       overflow-x: auto;
@@ -25,60 +24,70 @@
       height: 100vh;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      align-items: center;
     }
 
-    /* hide scrollbar */
     .slider::-webkit-scrollbar {
       display: none;
     }
 
     /* SLIDE */
     .slide {
-      position: relative;
       min-width: 100%;
-      height: 100vh;
       scroll-snap-align: start;
-      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
-    /* IMAGE */
-    .slide img {
+    /* IMAGE CARD (SMALLER) */
+    .image-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      height: 70vh;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    .image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
     }
 
-    /* TEXT OVERLAY (FULL RESPONSIVE) */
+    /* TEXT */
     .text {
       position: absolute;
-      bottom: clamp(40px, 12vh, 120px);
-      left: clamp(16px, 6vw, 80px);
-      right: clamp(16px, 6vw, 80px);
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
 
       color: white;
-      font-size: clamp(14px, 2.2vw, 26px);
-      line-height: 1.4;
-
-      background: rgba(0, 0, 0, 0.45);
-      padding: clamp(8px, 1.5vw, 16px) clamp(10px, 2vw, 18px);
+      font-size: clamp(14px, 2vw, 22px);
+      background: rgba(0,0,0,0.5);
+      padding: 10px 14px;
       border-radius: 12px;
-
-      max-width: 700px;
     }
 
-    /* BIG LAPTOPS */
-    @media (min-width: 1400px) {
-      .text {
-        max-width: 900px;
+    /* TABLET */
+    @media (max-width: 768px) {
+      .image-wrapper {
+        height: 60vh;
       }
     }
 
-    /* VERY SMALL PHONES */
-    @media (max-width: 360px) {
+    /* PHONE */
+    @media (max-width: 480px) {
+      .image-wrapper {
+        height: 50vh;
+        width: 95%;
+      }
+
       .text {
-        font-size: 13px;
-        bottom: 30px;
+        font-size: 14px;
       }
     }
   </style>
@@ -89,48 +98,66 @@
 <div class="slider">
 
   <div class="slide">
-    <img src="img1.jpg" />
-    <div class="text">From all our memories to this moment…</div>
+    <div class="image-wrapper">
+      <img src="img1.jpg" />
+      <div class="text">From all our memories to this moment…</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img2.jpg" />
-    <div class="text">You’ve been part of my story for so long</div>
+    <div class="image-wrapper">
+      <img src="img2.jpg" />
+      <div class="text">You’ve been part of my story for so long</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img4.jpg" />
-    <div class="text">Through every laugh and every day</div>
+    <div class="image-wrapper">
+      <img src="img4.jpg" />
+      <div class="text">Through every laugh and every day</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img5.jpg" />
-    <div class="text">I’ve been lucky to have you</div>
+    <div class="image-wrapper">
+      <img src="img5.jpg" />
+      <div class="text">I’ve been lucky to have you</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img6.jpg" />
-    <div class="text">And I will be even luckier to have you by my side</div>
+    <div class="image-wrapper">
+      <img src="img6.jpg" />
+      <div class="text">And I will be even luckier to have you by my side</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img7.jpg" />
-    <div class="text">For my happily ever after</div>
+    <div class="image-wrapper">
+      <img src="img7.jpg" />
+      <div class="text">For my happily ever after</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img8.jpg" />
-    <div class="text">I would love to share my most special moments with you…</div>
+    <div class="image-wrapper">
+      <img src="img8.jpg" />
+      <div class="text">I would love to share my most special moments with you…</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img9.jpg" />
-    <div class="text">So...</div>
+    <div class="image-wrapper">
+      <img src="img9.jpg" />
+      <div class="text">So...</div>
+    </div>
   </div>
 
   <div class="slide">
-    <img src="img3.jpg" />
-    <div class="text">will you be my bridesmaid?</div>
+    <div class="image-wrapper">
+      <img src="img3.jpg" />
+      <div class="text">will you be my bridesmaid?</div>
+    </div>
   </div>
 
 </div>
