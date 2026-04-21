@@ -17,7 +17,6 @@
       color: white;
     }
 
-    /* SCROLLER */
     .slider {
       display: flex;
       overflow-x: auto;
@@ -32,7 +31,6 @@
       display: none;
     }
 
-    /* SLIDE */
     .slide {
       min-width: 100%;
       scroll-snap-align: start;
@@ -43,7 +41,6 @@
       position: relative;
     }
 
-    /* IMAGE CARD */
     .image-wrapper {
       position: relative;
       width: 90%;
@@ -53,18 +50,15 @@
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.6);
     }
- .image-wrapper video {
+
+    .image-wrapper img,
+    .image-wrapper video {
       width: 100%;
       height: 100%;
       object-fit: scale-down;
-    }
-    .image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit:cover;
+      background: black;
     }
 
-    /* TEXT */
     .text {
       position: absolute;
       bottom: 20px;
@@ -77,13 +71,12 @@
       border-radius: 12px;
     }
 
-    /* BUTTONS (FINAL SLIDE) */
-    .buttons {
+    /* BUTTONS SCREEN */
+    .decision {
       position: absolute;
       bottom: 30px;
       display: flex;
       gap: 15px;
-      flex-wrap: wrap;
       justify-content: center;
       width: 100%;
     }
@@ -97,44 +90,29 @@
       background: white;
       color: black;
       font-weight: bold;
-      transition: 0.3s;
     }
 
     .btn:hover {
       transform: scale(1.05);
     }
 
-    /* INVITATION SCREEN */
+    /* INVITATION */
     .invitation {
       height: 100vh;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       text-align: center;
       background: #111;
-      padding: 20px;
     }
 
-    .invitation h1 {
-      font-size: 32px;
+    .invitation.show {
+      display: flex;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .image-wrapper {
-        height: 60vh;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .image-wrapper {
-        height: 50vh;
-        width: 95%;
-      }
-
-      .text {
-        font-size: 14px;
-      }
+    /* VIDEO hidden by default */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -145,69 +123,38 @@
 
   <div class="slide">
     <div class="image-wrapper">
-      <img src="img1.jpg" />
+      <img src="img1.jpg">
       <div class="text">From all our memories to this moment…</div>
     </div>
   </div>
 
   <div class="slide">
     <div class="image-wrapper">
-      <img src="img7.jpg" />
+      <img src="img7.jpg">
       <div class="text">You’ve been part of my story for so long</div>
     </div>
   </div>
 
   <div class="slide">
     <div class="image-wrapper">
-      <img src="img4.jpg" />
-      <div class="text">Through every laugh and every day</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="image-wrapper">
-      <img src="img9.jpg" />
-      <div class="text">I’ve been lucky to have you</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="image-wrapper">
-      <img src="img8.jpg" />
-      <div class="text">And I will be even luckier to have you by my side</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="image-wrapper">
-      <img src="img2.jpg" />
-      <div class="text">I would love to share my most special moments with you…</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="image-wrapper">
-      <img src="img5.jpg" />
-      <div class="text">So...</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <div class="image-wrapper">
-      <img src="img6.jpg" />
+      <img src="img6.jpg">
       <div class="text">Will you be my bridesmaid?</div>
     </div>
   </div>
 
-  <!-- VIDEO SLIDE -->
+  <!-- FINAL DECISION SLIDE -->
   <div class="slide">
     <div class="image-wrapper">
-      <video src="vid1.MOV" autoplay muted loop playsinline></video>
 
-      <div class="buttons">
-        <a href="#invitation"><button class="btn">Yes</button></a>
-        <a href="#invitation"><button class="btn">Yes of course</button></a>
+      <!-- VIDEO (hidden initially) -->
+      <video id="video" class="hidden" src="vid1.MOV" controls></video>
+
+      <!-- BUTTONS -->
+      <div id="buttons" class="decision">
+        <button class="btn" onclick="playVideo()">Yes</button>
+        <button class="btn" onclick="openInvitation()">Yes of course</button>
       </div>
+
     </div>
   </div>
 
@@ -217,6 +164,21 @@
 <div id="invitation" class="invitation">
   <h1>💍 Wedding Invitation 💍<br/>You’re officially invited!</h1>
 </div>
+
+<script>
+  function playVideo() {
+    document.getElementById("video").classList.remove("hidden");
+    document.getElementById("buttons").style.display = "none";
+
+    const video = document.getElementById("video");
+    video.play();
+  }
+
+  function openInvitation() {
+    document.getElementById("invitation").classList.add("show");
+    document.querySelector(".slider").style.display = "none";
+  }
+</script>
 
 </body>
 </html>
